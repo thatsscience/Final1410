@@ -62,14 +62,14 @@ public class TileMap {
 			BufferedImage subimage;
 			for(int col = 1; col < numTilesAcross; col++) {
 				subimage = tileset.getSubimage(
-					col * tileSize - 32,
+					col * tileSize -tileSize,
 					0,
 					tileSize,
 					tileSize
 				);
 				tiles[0][col] = new Tile(subimage, false);
 				subimage = tileset.getSubimage(
-					col * tileSize - 32,
+					col * tileSize -tileSize ,
 					tileSize,
 					tileSize,
 					tileSize
@@ -134,6 +134,7 @@ public class TileMap {
 	
 	public void draw(Graphics2D g) {
 		
+		
 		for(int row = 0; row < mapHeight; row++) {
 			for(int col = 0; col < mapWidth; col++) {
 				
@@ -141,13 +142,16 @@ public class TileMap {
 				
 				int r = rc / tiles[0].length;
 				int c = rc % tiles[0].length;
-				
+//				try{
 				g.drawImage(
 					tiles[r][c].getImage(),
 					x + col * tileSize,
 					y + row * tileSize,
 					null
 				);
+//				}catch(Exception e){
+//					e.printStackTrace();
+//				}
 				
 			}
 		}

@@ -17,8 +17,6 @@ public class Player {
 
 	private boolean left;
 	private boolean right;
-	// private boolean jumping;
-	// private boolean falling;
 	private boolean up;
 	private boolean down;
 
@@ -26,7 +24,6 @@ public class Player {
 	private double maxSpeed;
 	private double maxFallingSpeed;
 	private double stopSpeed;
-	// private double jumpStart;
 	private double gravity;
 
 	private TileMap tileMap;
@@ -40,8 +37,6 @@ public class Player {
 	private BufferedImage[] idleSprites;
 	private BufferedImage[] walkingSprites;
 	private BufferedImage[] downSprites;
-	private BufferedImage[] fallingSprites;
-
 	private BufferedImage[] upSprites;
 
 	private boolean facingLeft;
@@ -50,13 +45,12 @@ public class Player {
 
 		tileMap = tm;
 
-		width = 15;
-		height = 33;
+		width = 60;
+		height = 134;
 
-		moveSpeed = 9.6;
-		maxSpeed = 9.6;
-		//maxFallingSpeed = 12;
-		stopSpeed = 9.60;
+		moveSpeed = 25.6;
+		maxSpeed = 25.6;
+		stopSpeed = 25.60;
 
 		try {
 
@@ -66,28 +60,23 @@ public class Player {
 			downSprites = new BufferedImage[8];
 
 			// idleSprites[8] =
-			BufferedImage idle = ImageIO.read(new File("down_idle_small.png"));
+			BufferedImage idle = ImageIO.read(new File("down_idle.png"));
 			for (int i = 0; i < idleSprites.length; i++) {
 				idleSprites[i] = idle.getSubimage(i * width, 0, width, height);
 			}
 
-			BufferedImage down = ImageIO.read(new File("walking_down_small.png"));
+			BufferedImage down = ImageIO.read(new File("walking_down.png"));
 			for (int i = 0; i < downSprites.length; i++) {
 				downSprites[i] = down.getSubimage(i * width, 0, width, height);
 			}
 
-			// jumpingSprites[0] = ImageIO.read(new File("kirbyjump.gif"));
-			// fallingSprites[0] = ImageIO.read(new File("kirbyfall.gif"));
-
-			// upSprites[0] = ImageIO.read(new File("walking_up.png"));
-
-			BufferedImage up = ImageIO.read(new File("walking_up_small.png"));
+			BufferedImage up = ImageIO.read(new File("walking_up.png"));
 			for (int i = 0; i < upSprites.length; i++) {
 				upSprites[i] = up.getSubimage(i * width, 0, width, height);
 			}
 
 			BufferedImage walking_left = ImageIO.read(new File(
-					"walking_left_small.png"));
+					"walking_left.png"));
 			for (int i = 0; i < walkingSprites.length; i++) {
 				walkingSprites[i] = walking_left.getSubimage(i * width, 0,
 						width, height);
@@ -242,7 +231,7 @@ public class Player {
 		y = tempy;
 
 		// move the map
-		
+
 		tileMap.setx((int) (GamePanel.WIDTH / 2 - x));
 		tileMap.sety((int) (GamePanel.HEIGHT / 2 - y));
 
